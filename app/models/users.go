@@ -49,3 +49,11 @@ func GetUser(id int) (user User, err error) {
 	)
 	return user, err
 }
+func (u *User) UPdateUser() (err error) {
+	cmd := `update users set name = ?, email = ? where id = ?`
+	_, err = Db.Exec(cmd, u.Name, u.Email, u.ID)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	return err
+}
