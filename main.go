@@ -22,8 +22,8 @@ func main() {
 
 	// ユーザーを作成する
 	u := &models.User{}
-	u.Name = "test"
-	u.Email = "test@example.com"
+	u.Name = "test3"
+	u.Email = "test3@example.com"
 	u.PassWord = "testtest"
 	fmt.Println(u)
 
@@ -58,12 +58,18 @@ func main() {
 	// fmt.Println(t)
 
 	// Todoを取得する（複数）
-	user, _ := models.GetUser(2)
-	user.CreateTodo("Second Todo")
+	user, _ := models.GetUser(3)
+	user.CreateTodo("Third Todo")
 
-	todos, _ := models.GetTodos()
+	// todos, _ := models.GetTodos()
+	// for _, v := range todos {
+	// 	fmt.Println(v)
+	// }
+
+	// Todoを取得する（ユーザー絞り込み）
+	user2, _ := models.GetUser(2)
+	todos, _ := user2.GetTodosByUser()
 	for _, v := range todos {
 		fmt.Println(v)
 	}
-
 }
