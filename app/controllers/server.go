@@ -20,7 +20,9 @@ func generateHTML(w http.ResponseWriter, data interface{}, filenames ...string) 
 func StartMainServer() error {
 	files := http.FileServer(http.Dir(config.Config.Static))
 	http.Handle("/static/", http.StripPrefix("/static/", files))
+	// http.HandleFanc("URLのパス", route_auth.goなどのファイルで設定したパスに関する関数)
 	http.HandleFunc("/", top)
 	http.HandleFunc("/signup", signUp)
+	http.HandleFunc("/login", login)
 	return http.ListenAndServe(":"+config.Config.Port, nil)
 }
