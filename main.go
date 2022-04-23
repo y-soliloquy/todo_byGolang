@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	// ログファイルを作成しログを書き込む
 	// fmt.Println(config.Config.Port)
 	// fmt.Println(config.Config.SQLDriver)
 	// fmt.Println(config.Config.DbName)
@@ -15,11 +16,17 @@ func main() {
 
 	fmt.Println(models.Db)
 
-	u := &models.User{}
-	u.Name = "test"
-	u.Email = "test@example.com"
-	u.PassWord = "testtest"
-	fmt.Println(u)
+	// ユーザーを作成する
+	// u := &models.User{}
+	// u.Name = "test"
+	// u.Email = "test@example.com"
+	// u.PassWord = "testtest"
+	// fmt.Println(u)
 
-	u.CreateUser()
+	// u.CreateUser()
+
+	// ユーザーを呼び出す
+	u, _ := models.GetUser(1)
+
+	fmt.Println(u)
 }
