@@ -75,7 +75,11 @@ func (u *User) DeleteUser() (err error) {
 	return err
 }
 
-// セッション
+//************************************************************************************//
+//	セッション														　					//
+//************************************************************************************//
+
+// メールアドレスからユーザーを特定する
 func GetUserByEmail(email string) (user User, err error) {
 	user = User{}
 	cmd := `select id, uuid, name, email, password, created_at from users where email = ?`
@@ -91,10 +95,10 @@ func GetUserByEmail(email string) (user User, err error) {
 	return user, err
 }
 
+// セッションを作成する
 func (u *User) CreateSession() (session Session, err error) {
 	session = Session{}
 
-	// セッションを作成する
 	cmd1 := `insert into sessions (
 		uuid,
 		email,
@@ -103,7 +107,7 @@ func (u *User) CreateSession() (session Session, err error) {
 
 	_, err = Db.Exec(cmd1, createUUID(), u.Email, u.ID, time.Now())
 	if err != nil {
-		log.Println(err)
+		log.Fatalln(err)
 	}
 
 	cmd2 := `select id, uuid, email, user_id, created_at from sessions where user_id = ? and email = ?`
@@ -117,4 +121,24 @@ func (u *User) CreateSession() (session Session, err error) {
 	)
 
 	return session, err
+}
+
+func (sess *Session) CheckSession() (valid bool, err error) {
+	cmd := `select id, uuid, user_id, created_at from sessions where uuid = ?`
+	err = Db.QueryRow(cmd, sess.UUID).Scan(
+		&sess.ID,
+		&sess.UUID,
+		&sess.UserID,
+		&sess.CreatedAt,
+	)
+	if err != nil {
+		valid = false
+		return
+	}
+	if sess.ID != 0 {
+		valid = true
+	}
+
+	return valid, err
+
 }

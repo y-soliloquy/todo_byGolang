@@ -108,4 +108,8 @@ func main() {
 
 	fmt.Println(session)
 
+	// セッションの存在の有無をチェックする
+	valid, _ := session.CheckSession()
+	fmt.Println(valid)
+
 }
