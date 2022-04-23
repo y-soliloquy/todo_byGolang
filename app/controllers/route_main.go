@@ -15,5 +15,5 @@ func top(w http.ResponseWriter, r *http.Request) {
 	// generateHTML(w, nil, "layout", "top")
 
 	// generateHTMLの第二引数にnilではなく任意のものを設置してviewに渡す場合
-	generateHTML(w, "Hello World!!!!!", "layout", "top")
+	generateHTML(w, "Hello World!!!!!", "layout", "public_navbar", "top")
 }
