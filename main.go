@@ -2,10 +2,14 @@ package main
 
 import (
 	"fmt"
+	"todo_bygolang/app/controllers"
 	"todo_bygolang/app/models"
 )
 
 func main() {
+	//************************************************************************************//
+	//	ログ　　														　					//
+	//************************************************************************************//
 	// ログファイルを作成しログを書き込む
 	// fmt.Println(config.Config.Port)
 	// fmt.Println(config.Config.SQLDriver)
@@ -15,6 +19,12 @@ func main() {
 	// log.Println("testだよ")
 
 	fmt.Println(models.Db)
+
+	//************************************************************************************//
+	//	サーバー	　  		   									　  				    //
+	//************************************************************************************//
+
+	controllers.StartMainServer()
 
 	//************************************************************************************//
 	//	ユーザー														　					//
@@ -79,6 +89,6 @@ func main() {
 	// t.UpdateTodo()
 
 	// Todoを削除する
-	t, _ := models.GetTodo(3)
-	t.DeleteTodo()
+	// t, _ := models.GetTodo(3)
+	// t.DeleteTodo()
 }
