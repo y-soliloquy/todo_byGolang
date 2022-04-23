@@ -53,7 +53,17 @@ func main() {
 	// user, _ := models.GetUser(2)
 	// user.CreateTodo("First Todo")
 
-	// Todoを取得する
-	t, _ := models.GetTodo(1)
-	fmt.Println(t)
+	// Todoを取得する（単数）
+	// t, _ := models.GetTodo(1)
+	// fmt.Println(t)
+
+	// Todoを取得する（複数）
+	user, _ := models.GetUser(2)
+	user.CreateTodo("Second Todo")
+
+	todos, _ := models.GetTodos()
+	for _, v := range todos {
+		fmt.Println(v)
+	}
+
 }
