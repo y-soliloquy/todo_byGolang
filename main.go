@@ -17,13 +17,13 @@ func main() {
 	fmt.Println(models.Db)
 
 	// ユーザーを作成する
-	// u := &models.User{}
-	// u.Name = "test"
-	// u.Email = "test@example.com"
-	// u.PassWord = "testtest"
-	// fmt.Println(u)
+	u := &models.User{}
+	u.Name = "test"
+	u.Email = "test@example.com"
+	u.PassWord = "testtest"
+	fmt.Println(u)
 
-	// u.CreateUser()
+	u.CreateUser()
 
 	// ユーザーを呼び出す
 	// u, _ := models.GetUser(1)
@@ -40,4 +40,8 @@ func main() {
 	// u.DeleteUser()
 	// u, _ = models.GetUser(1)
 	// fmt.Println(u)
+
+	// Todoを作成する
+	user, _ := models.GetUser(2)
+	user.CreateTodo("First Todo")
 }
