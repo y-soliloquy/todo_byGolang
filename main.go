@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"log"
+	"todo_bygolang/app/controllers"
 	"todo_bygolang/app/models"
 )
 
@@ -24,7 +24,7 @@ func main() {
 	//	サーバー	　  		   									　  				    //
 	//************************************************************************************//
 
-	// controllers.StartMainServer()
+	controllers.StartMainServer()
 
 	//************************************************************************************//
 	//	ユーザー														　					//
@@ -97,19 +97,19 @@ func main() {
 	//************************************************************************************//
 
 	// Emailを利用してユーザーを特定する
-	user, _ := models.GetUserByEmail("test@example.com")
-	fmt.Println(user)
+	// user, _ := models.GetUserByEmail("test@example.com")
+	// fmt.Println(user)
 
 	// セッションを生成する
-	session, err := user.CreateSession()
-	if err != nil {
-		log.Fatalln(err)
-	}
+	// session, err := user.CreateSession()
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
 
-	fmt.Println(session)
+	// fmt.Println(session)
 
 	// セッションの存在の有無をチェックする
-	valid, _ := session.CheckSession()
-	fmt.Println(valid)
+	// valid, _ := session.CheckSession()
+	// fmt.Println(valid)
 
 }
