@@ -2,7 +2,10 @@ module todo_bygolang
 
 go 1.18
 
-require gopkg.in/go-ini/ini.v1 v1.66.4
+require (
+	github.com/lib/pq v1.10.5
+	gopkg.in/go-ini/ini.v1 v1.66.4
+)
 
 require (
 	github.com/google/uuid v1.3.0
