@@ -16,7 +16,7 @@ func (u *User) CreateTodo(content string) (err error) {
 	cmd := `insert into todos (
 		content,
 		user_id,
-		created_at) values ($1, $2, $1)`
+		created_at) values ($1, $2, $3)`
 
 	_, err = Db.Exec(cmd, content, u.ID, time.Now())
 
