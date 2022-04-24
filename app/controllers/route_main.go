@@ -16,4 +16,21 @@ func top(w http.ResponseWriter, r *http.Request) {
 
 	// generateHTMLの第二引数にnilではなく任意のものを設置してviewに渡す場合
 	generateHTML(w, "Hello World!!!!!", "layout", "public_navbar", "top")
+
+	_, err := session(w, r)
+	if err != nil {
+		generateHTML(w, nil, "layout", "private_navbar", "index")
+	} else {
+		http.Redirect(w, r, "/todos", 302)
+
+	}
+}
+
+func index(w http.ResponseWriter, r *http.Request) {
+	_, err := session(w, r)
+	if err != nil {
+		http.Redirect(w, r, "/", 302)
+	} else {
+		generateHTML(w, nil, "layout", "private_navbar", "index")
+	}
 }
