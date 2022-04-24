@@ -3,6 +3,7 @@ package controllers
 import (
 	"log"
 	"net/http"
+	"todo_bygolang/app/models"
 )
 
 func top(w http.ResponseWriter, r *http.Request) {
@@ -70,5 +71,22 @@ func todoSave(w http.ResponseWriter, r *http.Request) {
 		}
 
 		http.Redirect(w, r, "/todos", 302)
+	}
+}
+
+func todoEdit(w http.ResponseWriter, r *http.Request, id int) {
+	sess, err := session(w, r)
+	if err != nil {
+		http.Redirect(w, r, "/login", 302)
+	} else {
+		_, err := sess.GetUserBySession()
+		if err != nil {
+			log.Println(err)
+		}
+		t, err := models.GetTodo(id)
+		if err != nil {
+			log.Println(err)
+		}
+		generateHTML(w, t, "layout", "private_navbar", "todo_edit")
 	}
 }
